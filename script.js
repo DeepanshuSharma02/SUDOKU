@@ -31,7 +31,7 @@ function setUpSudoku() {
 
                         }else{
                             let value = input.value
-                            insertedval++;
+                            
                             if (value[0] > '9' || value[0] < '1') input.value = ""
                             if (value != solution[i][j]) {
                                 input.value = ""
@@ -42,6 +42,7 @@ function setUpSudoku() {
                                     gameOverByError()
                                 }
                             } else {
+                                insertedval++;
                                 input.classList.add('valueInserted')
                                 input.addEventListener('input', () => {
                                     input.value = solution[i][j];
