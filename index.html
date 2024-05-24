@@ -6,9 +6,11 @@
     <title>Sudoku</title>
 
     <style>
-      h1{
+      .heading{
         text-align: center;
-        font-size: 33px;
+        font-size: 28px;
+        
+        margin-right: 50px;
         color: orange;
       }
       body{
@@ -24,15 +26,17 @@
         grid-template-columns: repeat(9, 50px);
         grid-template-rows: repeat(9, 50px);
         
-        margin: 90px auto;
+        margin: 85px auto;
         margin-top: 60px;
         margin-bottom: 40px;
+        margin-right: 130px;
+        padding: 0;
         
         
         width: max-content;
       }
       .initial{
-        color: #0000FF;
+        color: blue;
         font-weight: bolder;
         
       }
@@ -147,7 +151,9 @@
     padding: 20px;
     z-index: 9999;
     animation: slideIn 0.5s ease forwards;
-}
+  }
+
+
 
 
 
@@ -186,18 +192,85 @@
     }
   }
 
+  .RAM{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* gap: 1px; */
+  }
+  .inputbuttons{
+    display: grid;
+    grid-template-columns: repeat(3, 77px);
+    grid-template-rows: repeat(3, 77px);
+    margin-right: 10%;
+    gap: 4px;
+
+  }
+
+  .btns{
+    border-radius: 20px;
+    font-size: 40px;
+    color: #ed1414;
+    
+  }
+  #check:hover{
+        background-color: #fde9bb;
+      }
+      
+        @keyframes clickAnimation {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+  }
+
+  .clicked {
+    animation: clickAnimation 0.3s ease-in-out;
+  }
+  .btns:hover{
+    opacity: 90%;
+
+  }
+  .timer{
+    color: #ed1414;
+    margin-left: 150px;
+    font-size: 50px;
+  }
+
       
       
   </style>
 
   </head>
   <body>
-    <h1>SUDOKU GAME</h1>
-    <div class="sudoku-container">
-    </div>
-    <template id="element">
+    <h1 class="heading">SUDOKU GAME</h1>
+    <div class="RAM">
+      <div class="timer">
+        <label id="hours">00</label>:<label id="minutes">00</label>:<label id="seconds">00</label>
+      </div>
+      
+      
+      <div class="sudoku-container">
+      
+      </div>
+  
+      <template id="element">
         <input id="check" type="text" maxlength="1" />
-    </template>
+      </template>
+      
+      <div class="inputbuttons">
+        
+        <button id="1" class="btns">1</button>
+        <button id="2" class="btns">2</button>
+        <button id="3" class="btns">3</button>
+        <button id="4" class="btns">4</button>
+        <button id="5" class="btns">5</button>
+        <button id="6" class="btns">6</button>
+        <button id="7" class="btns">7</button>
+        <button id="8" class="btns">8</button>
+        <button id="9" class="btns">9</button>
+      </div>
+    </div>
     <div class="error">
       <div id="Error">ERRORS:0</div>
       
@@ -214,6 +287,7 @@
       <p>TRY AGAIN!</p>
       
     </div>
+
 
   </div>
   <script src="script.js" defer></script>
