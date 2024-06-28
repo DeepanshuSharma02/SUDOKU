@@ -1,11 +1,29 @@
 
 const sudokuContainer = document.querySelector(".sudoku-container")
+let type="medium";
+let clicked=0;
+const t=document.querySelector(".type-buttons")
+t.addEventListener("click",e => {
+    type=e.target.id;
+    console.log(type);
+    clicked=1;
+    setUpSudoku();
+    clock();
+    
+    
+})
+
+
+
 function setUpSudoku() {
+    
+    
     sudokuContainer.innerHTML = ""
-    const URL = "https://sugoku.onrender.com/board?difficulty=easy"
+    const URL = `https://sugoku.onrender.com/board?difficulty=${type}`
+    
     let board = fetch(URL).then(response => response.json()).then(data => {
         let grid = data.board
-        console.log(grid);
+        //console.log(grid);
         let board = grid;
         const encodeBoard = (board) => board.reduce((result, row, i) => result + `%5B${encodeURIComponent(row)}%5D${i === board.length - 1 ? '' : '%2C'}`, '');
 
@@ -26,13 +44,13 @@ function setUpSudoku() {
                 });
                 const data = await response.json();
                 solution = data.solution;
-                console.log('Solution:', solution); // Now the solution is logged after it has been set
+                //console.log('Solution:', solution); // Now the solution is logged after it has been set
                 return solution; // Returning the solution to use it outside
             } catch (error) {
                 console.warn(error);
             }
         }
-
+       
         getSolution().then(solution => {
             // Use the solution variable here
             let errorCnt = 0
@@ -44,7 +62,7 @@ function setUpSudoku() {
                 for (let j = 0; j < 9; j++) {
                     const temp = document.querySelector('#element').content.cloneNode(true)
                     const input = temp.querySelector('input')
-                    console.log(solution[i][j])
+                    //console.log(solution[i][j])
                     input.classList.add(`r${i}c${j}`)
                     sudokuContainer.appendChild(temp)
                     if (grid[i][j]) {
@@ -109,8 +127,8 @@ function setUpSudoku() {
                                 currcell.style.backgroundColor = "pink";
                             }
 
-                            console.log(`${selectedrow}`);
-                            console.log(`${selectedcol}`);
+                            // console.log(`${selectedrow}`);
+                            // console.log(`${selectedcol}`);
                         })
 
 
@@ -139,7 +157,7 @@ function setUpSudoku() {
                 if (selectedcol != -1 && selectedrow != -1) {
                     let cell = document.getElementsByClassName(`r${selectedrow}c${selectedcol}`)[0];
 
-                    console.log(value);
+                    //console.log(value);
                     if (cell.classList.contains("valueInserted")) {
 
                     } else {
@@ -173,7 +191,7 @@ function setUpSudoku() {
             })
 
 
-            console.log('Stored solution:', solution);
+            //console.log('Stored solution:', solution);
         });
 
 
@@ -185,7 +203,12 @@ function setUpSudoku() {
 const errorsound = new Audio('errorr.mp3');
 const winsound = new Audio('win.wav');
 const gameoversound = new Audio('gameover.mp3');
-setUpSudoku()
+
+if(clicked===0){
+    setUpSudoku()
+    clock();
+}
+
 
 let d = document.querySelector("#bhadiyasi");
 d.addEventListener('click', () => {
@@ -232,28 +255,37 @@ function gameOverByWin() {
     setTimeout(togglePopup, 3000);
 
 }
+var intervalId;
 
-
-
-var minutesLabel = document.getElementById("minutes");
-var secondsLabel = document.getElementById("seconds");
-var hoursLabel = document.getElementById("hours");
-var totalSeconds = 0;
-setInterval(setTime, 1000);
-
-function setTime() {
-    ++totalSeconds;
-    secondsLabel.innerHTML = pad(totalSeconds % 60);
-    minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
-    hoursLabel.innerHTML = pad(parseInt(totalSeconds / 3600));
-}
-
-function pad(val) {
-    var valString = val + "";
-    if (valString.length < 2) {
-        return "0" + valString;
-    } else {
-        return valString;
+function clock(){
+    if(clicked===1){
+        stopClock();
     }
+    var minutesLabel = document.getElementById("minutes");
+    var secondsLabel = document.getElementById("seconds");
+    var hoursLabel = document.getElementById("hours");
+    var totalSeconds = 0;
+    
+    intervalId = setInterval(setTime, 1000);
+
+    function setTime() {
+        ++totalSeconds;
+        secondsLabel.innerHTML = pad(totalSeconds % 60);
+        minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+        hoursLabel.innerHTML = pad(parseInt(totalSeconds / 3600));
+    }
+
+    function pad(val) {
+        var valString = val + "";
+        if (valString.length < 2) {
+            return "0" + valString;
+        } else {
+            return valString;
+        }
+    }
+
+}
+function stopClock() {
+    clearInterval(intervalId); 
 }
 
