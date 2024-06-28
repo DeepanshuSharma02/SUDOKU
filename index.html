@@ -10,7 +10,6 @@
         text-align: center;
         font-size: 28px;
         
-        margin-right: 50px;
         color: orange;
       }
       body{
@@ -26,8 +25,9 @@
         grid-template-columns: repeat(9, 50px);
         grid-template-rows: repeat(9, 50px);
         
-        margin: 85px auto;
-        margin-top: 60px;
+        
+        margin-left: 130px;
+        margin-top: 30px;
         margin-bottom: 40px;
         margin-right: 130px;
         padding: 0;
@@ -116,11 +116,10 @@
         line-height: 20px;
         list-style: none;
         margin: 0;
-        margin-left: 45%;
-        margin-right: 45%;
+        
         outline: none;
         padding: 10px 16px;
-        position: relative;
+        /* position: relative; */
         text-align: center;
         text-decoration: none;
         transition: color 100ms;
@@ -133,6 +132,12 @@
       .button-1:hover,
       .button-1:focus {
         background-color: #a382f0;
+      }
+
+      #bhadiyasi{
+        margin-left: 45%;
+        margin-right: 45%;
+
       }
 
 
@@ -197,6 +202,8 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    justify-items: center;
+    margin-left: 120px;
     /* gap: 1px; */
   }
   .inputbuttons{
@@ -231,12 +238,25 @@
     opacity: 90%;
 
   }
+  .MAIN{
+    display: grid;
+    grid-template-rows: (2);
+    grid-template-columns: (3);
+    justify-content: center;
+    justify-items: center;
+    
+  }
+
   .timer{
     color: #ed1414;
-    margin-left: 150px;
     font-size: 50px;
   }
 
+  
+
+
+  
+  
       
       
   </style>
@@ -244,33 +264,43 @@
   </head>
   <body>
     <h1 class="heading">SUDOKU GAME</h1>
-    <div class="RAM">
-      <div class="timer">
-        <label id="hours">00</label>:<label id="minutes">00</label>:<label id="seconds">00</label>
+    <div class="MAIN">
+      <div class="type-buttons">
+        <button id="easy" class="button-1">Easy</button>
+        <button id="medium" class="button-1">Medium</button>
+        <button id="hard" class="button-1">Hard</button>
       </div>
       
-      
-      <div class="sudoku-container">
-      
-      </div>
-  
-      <template id="element">
-        <input id="check" type="text" maxlength="1" />
-      </template>
-      
-      <div class="inputbuttons">
+      <div class="RAM">
+        <div class="timer">
+          <label id="hours">00</label>:<label id="minutes">00</label>:<label id="seconds">00</label>
+        </div>
         
-        <button id="1" class="btns">1</button>
-        <button id="2" class="btns">2</button>
-        <button id="3" class="btns">3</button>
-        <button id="4" class="btns">4</button>
-        <button id="5" class="btns">5</button>
-        <button id="6" class="btns">6</button>
-        <button id="7" class="btns">7</button>
-        <button id="8" class="btns">8</button>
-        <button id="9" class="btns">9</button>
+        
+        <div class="sudoku-container">
+        
+        </div>
+    
+        <template id="element">
+          <input id="check" type="text" maxlength="1" />
+        </template>
+        
+        <div class="inputbuttons">
+          
+          <button id="1" class="btns">1</button>
+          <button id="2" class="btns">2</button>
+          <button id="3" class="btns">3</button>
+          <button id="4" class="btns">4</button>
+          <button id="5" class="btns">5</button>
+          <button id="6" class="btns">6</button>
+          <button id="7" class="btns">7</button>
+          <button id="8" class="btns">8</button>
+          <button id="9" class="btns">9</button>
+        </div>
       </div>
+
     </div>
+
     <div class="error">
       <div id="Error">ERRORS:0</div>
       
